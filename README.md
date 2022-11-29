@@ -6,7 +6,7 @@ Make a comparison between **absolute position prediction** and **moving vector p
 
 ## function planning
 - [x] Object extraction from dataset with certain classes and numbers
-- [ ] Image extension for sequential image set simulation
+- [x] Image extension for sequential image set simulation
 - [ ] Frame difference data generation
 - [ ] External input for absolute xy position (ground truth for position prediction)
 - [ ] Vector data generation (ground truth for vector prediction)
