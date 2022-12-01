@@ -9,7 +9,7 @@ Make a comparison between **absolute position prediction** and **moving vector p
 - [x] Image extension for sequential image set simulation
 - [x] Frame difference data generation
 - [ ] External input for absolute xy position (ground truth for position prediction)
-- [ ] Vector data generation (ground truth for vector prediction)
+- [x] Vector data generation (ground truth for vector prediction)
 - [ ] Tranfer data from Tensor to DataLoader
 - [ ] Deep learning model building
 - [ ] Training / Testing function
