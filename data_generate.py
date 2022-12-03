@@ -1,7 +1,5 @@
 # import packages
 import torch
-import random
-
 # additional certain short functions
 from torchvision import datasets
 from random import randint
