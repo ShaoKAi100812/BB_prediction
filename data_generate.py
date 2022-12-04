@@ -30,7 +30,7 @@ def pick(dataset: datasets, name: list, number: int) -> list:
             return score
         
 # sequential album extension
-def album(dataset: datasets, is_rand_stride: bool, is_rand_pos: bool) -> torch.Tensor:
+def album(dataset: torch.Tensor, is_rand_stride: bool, is_rand_pos: bool) -> torch.Tensor:
     expansion = []      # list after expanded
     temp = []           # list after every step
     stride = 5          # default stride
@@ -117,10 +117,8 @@ def album(dataset: datasets, is_rand_stride: bool, is_rand_pos: bool) -> torch.T
         print("numbers of each final album =", score_list)
 
     # return setting (add stride_list afterward)
-    if is_rand_pos == True:
-        return score, score_list, stride_list
-    else:
-        return temp, num_list, stride_list
+    if is_rand_pos == True: return score, score_list, stride_list
+    else: return temp, num_list, stride_list
     
 # frame differences generation function
 def dif_frame(dataset: datasets, num_list: list) -> torch.Tensor:
