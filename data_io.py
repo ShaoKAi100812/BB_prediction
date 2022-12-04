@@ -39,11 +39,7 @@ def image_import(gt: torch.Tensor, IMAGE_NAME: str) -> torch.Tensor:
     isExist = os.path.exists(PATH_IMAGE)
     if not isExist: raise NameError("File not exist!")
     for i in range(len(gt)):
-        if i == 0:  img = Image.open(os.path.join(PATH_IMAGE, "{}.png".format(i)))  # 需要轉成np.array
-        else: img = 
-    pass
-
-###############################################################
-# # import image testing
-# img = Image.open(os.path.join(PATH_DATA, IMAGE_NAME))
-# img.show()
+        im = Image.open(os.path.join(PATH_IMAGE, "{}.png".format(i)))
+        if i == 0:  img = torch.tensor(np.array(list(im.getdata())).reshape(1, 28*3, 28*4))
+        else: img = torch.cat((img, torch.tensor(np.array(list(im.getdata())).reshape(1, 28*3, 28*4))), dim=0)
+    return img
