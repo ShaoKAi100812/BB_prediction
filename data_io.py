@@ -6,7 +6,7 @@ import os
 import torch
 
 # external path
-PATH_DATA = os.path.join(os.getcwd(), "data\\test")
+PATH_DATA = os.path.join(os.getcwd(), "data")
 
 # export ground truth
 def gt_export(dataset: torch.Tensor, CSV_NAME: str) -> None:
