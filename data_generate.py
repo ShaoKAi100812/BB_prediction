@@ -49,7 +49,7 @@ def album(dataset: torch.Tensor, is_rand_stride: bool, is_rand_pos: bool) -> tor
         expansion[i][:, 28:] = 0
         expansion[i][28:, :] = 0
     expansion = torch.tensor(expansion, dtype=torch.float32)
-    print("expansion shape =", expansion.shape)
+    # print("expansion shape =", expansion.shape)
     
     # random stride
     for i in range(len(num_list)):
@@ -107,14 +107,12 @@ def album(dataset: torch.Tensor, is_rand_stride: bool, is_rand_pos: bool) -> tor
             # renew score_list
             score_list[i] = num_list[i]+j+1
     
-    # print list shape
-    print("temp shape =", temp.shape)
-    print("numbers of each original album =", num_list)
-
-           
-    if is_rand_pos == True:
-        print("score shape =", score.shape)
-        print("numbers of each final album =", score_list)
+    # # print list shape
+    # print("temp shape =", temp.shape)
+    # print("numbers of each original album =", num_list)
+    # if is_rand_pos == True:
+    #     print("score shape =", score.shape)
+    #     print("numbers of each final album =", score_list)
 
     # return setting (add stride_list afterward)
     if is_rand_pos == True: return score, score_list, stride_list
