@@ -1,7 +1,7 @@
 # import packages
 import torch
 # additional certain short functions
-from torchvision import datasets
+from torch.utils.data import Dataset
 from random import randint
 from copy import deepcopy
 from math import floor, ceil
@@ -9,7 +9,7 @@ from torch import stack
 from torch import cat
 
 # object picking
-def pick(dataset: datasets, name: list, number: int) -> list:
+def pick(dataset: Dataset, name: list, number: int) -> list:
     i = 0   # intitial start searching point
     counter = [0] * len(name)
     score = []
@@ -121,7 +121,7 @@ def album(dataset: torch.Tensor, is_rand_stride: bool, is_rand_pos: bool) -> tor
     else: return temp, num_list, stride_list
     
 # frame differences generation function
-def dif_frame(dataset: datasets, num_list: list) -> torch.Tensor:
+def dif_frame(dataset: torch.Tensor, num_list: list) -> torch.Tensor:
     score = []                          # return tensor
     node = [0] * len(num_list)          # node for swithing album
     front_frame = deepcopy(dataset[0])
