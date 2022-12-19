@@ -10,7 +10,7 @@ Make a comparison between **absolute position prediction** and **moving vector p
 - [x] Frame difference data generation
 - [ ] External input for absolute xy position (ground truth for position prediction)
 - [x] Vector data generation (ground truth for vector prediction)
-- [ ] Tranfer data from Tensor to DataLoader
+- [x] Tranfer data from Tensor to DataLoader
 - [ ] Deep learning model building
 - [ ] Training / Testing function
 - [ ] Quality validation function
