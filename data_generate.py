@@ -32,7 +32,8 @@ def pick(dataset: Dataset, name: list, number: int) -> list:
 # sequential album extension
 def album(dataset: torch.Tensor, is_rand_stride: bool, is_rand_pos: bool) -> torch.Tensor:
     expansion = []      # list after expanded
-    temp = []           # list after every step
+    temp1 = []          # list after stride
+    temp2 = []          # list after position
     stride = 5          # default stride
     pos = [14, 27]      # default starting position [col, row]
     num_list = [0] * len(dataset)       # record number for each original album
@@ -71,13 +72,16 @@ def album(dataset: torch.Tensor, is_rand_stride: bool, is_rand_pos: bool) -> tor
         # record number
         num_list[i] = len(y)
         # sequencing part
-        if i == 0: temp = y
-        else: temp = cat((temp, y), dim=0)
+        if i == 0: temp1 = y
+        else: temp1 = cat((temp1, y), dim=0)
         # renew stride_list
         stride_list[i] = stride
 
     # random position
     if is_rand_pos == True: 
+        # intialize temp2
+        temp2 = torch.zeros(len(temp1), 28*3, 28*4)
+        # start random position moving
         for i in range(len(num_list)):
             # define position value
             pos = [randint(14, 27), randint(27, 28*3-1)]    # [col, row]
@@ -86,16 +90,16 @@ def album(dataset: torch.Tensor, is_rand_stride: bool, is_rand_pos: bool) -> tor
             for j in range(num_list[i]):
                 for k in range(28):
                     for l in range(28):
-                        temp[sum(num_list[:i])+j][pos[1]-k][pos[0]+stride*j-l] = \
-                            temp[sum(num_list[:i])+j][27-k][27+stride*j-l]
+                        temp2[sum(num_list[:i])+j][pos[1]-k][pos[0]+stride*j-l] = \
+                            temp1[sum(num_list[:i])+j][27-k][27+stride*j-l]
                 # clean other area
-                temp[sum(num_list[:i])+j][:pos[1]-28+1, :] = 0
-                temp[sum(num_list[:i])+j][:, pos[0]+stride*j+1:] = 0
+                temp2[sum(num_list[:i])+j][:pos[1]-28+1, :] = 0
+                temp2[sum(num_list[:i])+j][:, pos[0]+stride*j+1:] = 0
             # fill temp into score
-            if i == 0: score = temp[:num_list[i]]
-            else: score = cat((score, temp[sum(num_list[:i]):sum(num_list[:i+1])]), dim=0)
+            if i == 0: score = temp2[:num_list[i]]
+            else: score = cat((score, temp2[sum(num_list[:i]):sum(num_list[:i+1])]), dim=0)
             # fetch up last frames
-            next_frame = deepcopy(temp[sum(num_list[:(i+1)])-1])
+            next_frame = deepcopy(temp2[sum(num_list[:(i+1)])-1])
             for j in range(ceil((28-pos[0])/stride)+1):
                 for k in range(28):
                     if pos[0]+stride*(num_list[i]+j)-k < 112:
@@ -116,7 +120,7 @@ def album(dataset: torch.Tensor, is_rand_stride: bool, is_rand_pos: bool) -> tor
 
     # return setting (add stride_list afterward)
     if is_rand_pos == True: return score, score_list, stride_list
-    else: return temp, num_list, stride_list
+    else: return temp1, num_list, stride_list
     
 # frame differences generation function
 def dif_frame(dataset: torch.Tensor, num_list: list) -> torch.Tensor:
