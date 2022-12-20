@@ -38,8 +38,9 @@ def image_import(gt: torch.Tensor, IMAGE_NAME: str) -> torch.Tensor:
     PATH_IMAGE = os.path.join(PATH_DATA, IMAGE_NAME)
     isExist = os.path.exists(PATH_IMAGE)
     if not isExist: raise NameError("File not exist!")
+    img = torch.empty(len(gt), 1, 28*3, 28*4)
     for i in range(len(gt)):
         im = Image.open(os.path.join(PATH_IMAGE, "{}.png".format(i)))
-        if i == 0:  img = torch.tensor(np.array(list(im.getdata())).reshape(1, 28*3, 28*4))
-        else: img = torch.cat((img, torch.tensor(np.array(list(im.getdata())).reshape(1, 28*3, 28*4))), dim=0)
+        im = np.array(list(im.getdata())).reshape(1, 28*3, 28*4)
+        img[i] = torch.tensor(im)
     return img
