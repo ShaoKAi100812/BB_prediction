@@ -12,6 +12,6 @@ Make a comparison between **absolute position prediction** and **moving vector p
 - [x] Vector data generation (ground truth for vector prediction)
 - [x] Tranfer data from Tensor to DataLoader
 - [ ] Deep learning model building
-- [ ] Training / Testing function
+- [x] Training / Testing function
 - [ ] Quality validation function
 - [ ] Visualization function
