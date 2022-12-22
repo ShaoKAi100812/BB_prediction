@@ -17,19 +17,19 @@ class FCN(nn.Module):
             nn.Linear(node_1, node_2),
             nn.BatchNorm1d(node_2),
             nn.LeakyReLU(),
-            nn.Dropout(p=0.5)
+            nn.Dropout(p=0.3)
         )
         self.fc3 = nn.Sequential(
             nn.Linear(node_2, node_3),
             nn.BatchNorm1d(node_3),
             nn.LeakyReLU(),
-            nn.Dropout(p=0.5)
+            nn.Dropout(p=0.3)
         )
         self.fc4 = nn.Sequential(
             nn.Linear(node_3, node_4),
             nn.BatchNorm1d(node_4),
             nn.LeakyReLU(),
-            nn.Dropout(p=0.5)
+            nn.Dropout(p=0.1)
         )
         self.fc5 = nn.Sequential(
             nn.Linear(node_4, node_5),
