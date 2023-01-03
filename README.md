@@ -1,5 +1,5 @@
-# BB_prediction
-A semi-automated labeling system with DL model assistance in product line condition
+# Motion-based Bounding Box Prediction
+Assisting Annotation System for Big Data Labeling with Low Labeling Cost
 
 ## main goal
 Make a comparison between **absolute position prediction** and **moving vector prediction** by using object itself and frame difference
