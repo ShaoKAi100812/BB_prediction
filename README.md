@@ -1,4 +1,4 @@
-# Motion-based Bounding Box Prediction
+# Motion-based Bounding Box Labeling Prediction 
 Assisting Annotation Tool for Big Data Labeling with Low Labeling Cost
 
 ## main goal
